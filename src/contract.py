@@ -60,3 +60,47 @@ def main():
             self.data.token_owners[self.data.next_token_id] = params.owner
             self.data.token_metadata[self.data.next_token_id] = params.metadata
             self.data.next_token_id += 1
+
+        @sp.offchain_view
+        def token_metadata(self, params):
+            sp.cast(params, sp.nat)
+
+            assert self.data.token_metadata.contains(params), "FA2_TOKEN_UNDEFINED"
+
+            return self.data.token_metadata[params]
+
+        @sp.offchain_view
+        def get_balance(self, params):
+            sp.cast(params, balance_of_request)
+
+            assert self.data.token_metadata.contains(params.token_id), "FA2_TOKEN_UNDEFINED"
+
+            balance = 0
+
+            if self.data.token_owners[params.token_id] == params.owner:
+                balance = 1
+
+            return balance
+
+        @sp.offchain_view
+        def total_supply(self, params):
+            sp.cast(params, sp.nat)
+
+            assert self.data.token_metadata.contains(params), "FA2_TOKEN_UNDEFINED"
+
+            return 1
+
+        @sp.offchain_view
+        def all_tokens(self):
+            list = []
+
+            if self.data.next_token_id > 1:
+                list = sp.range(1, self.data.next_token_id)
+
+            return list
+
+        @sp.offchain_view
+        def is_operator(self, params):
+            sp.cast(params, is_operator_request)
+
+            return False
