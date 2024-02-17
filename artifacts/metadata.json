@@ -3,8 +3,8 @@
     "description":"Token of the Talent Vault",
     "homepage":"https://github.com/TalentVaultDegenHack/talent-vault-contract",
     "interfaces":[
-        "TZIP-016",
         "TZIP-012",
+        "TZIP-016",
         "TZIP-021"
     ],
     "license":{
