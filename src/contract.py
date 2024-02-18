@@ -13,7 +13,7 @@ def main():
     mint_params: type = sp.record(owner=sp.address, metadata=sp.map[sp.string, sp.bytes]).layout(("owner", "metadata"))
     is_operator_request: type = sp.record(owner=sp.address, operator=sp.address, token_id=sp.nat).layout(("owner", ("operator", "token_id")))
     token_owners: type = sp.big_map[sp.nat, sp.address]
-    token_metadata: type = sp.big_map[sp.nat, sp.map[sp.string, sp.bytes]]
+    token_metadata: type = sp.big_map[sp.nat, sp.record(token_id=sp.nat, token_info=sp.map[sp.string, sp.bytes]).layout(("token_id", "token_info") )]
 
     class TokenContract(sp.Contract):
         def __init__(self, metadata, minter):
@@ -58,7 +58,7 @@ def main():
             sp.cast(params, mint_params)
 
             self.data.token_owners[self.data.next_token_id] = params.owner
-            self.data.token_metadata[self.data.next_token_id] = params.metadata
+            self.data.token_metadata[self.data.next_token_id] = sp.record(token_id=self.data.next_token_id, token_info=params.metadata)
             self.data.next_token_id += 1
 
         @sp.offchain_view
@@ -80,7 +80,7 @@ def main():
             if self.data.token_owners[params.token_id] == params.owner:
                 balance = 1
 
-            return balance
+            return sp.cast(balance, sp.nat)
 
         @sp.offchain_view
         def total_supply(self, params):
@@ -88,7 +88,7 @@ def main():
 
             assert self.data.token_metadata.contains(params), "FA2_TOKEN_UNDEFINED"
 
-            return 1
+            return sp.cast(1, sp.nat)
 
         @sp.offchain_view
         def all_tokens(self):
@@ -97,7 +97,7 @@ def main():
             if self.data.next_token_id > 1:
                 list = sp.range(1, self.data.next_token_id)
 
-            return list
+            return sp.cast(list, sp.list[sp.nat])
 
         @sp.offchain_view
         def is_operator(self, params):
