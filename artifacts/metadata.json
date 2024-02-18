@@ -23,13 +23,27 @@
                             "prim":"nat"
                         },
                         "returnType":{
-                            "prim":"map",
+                            "prim":"pair",
                             "args":[
                                 {
-                                    "prim":"string"
+                                    "prim":"nat",
+                                    "annots":[
+                                        "%token_id"
+                                    ]
                                 },
                                 {
-                                    "prim":"bytes"
+                                    "prim":"map",
+                                    "args":[
+                                        {
+                                            "prim":"string"
+                                        },
+                                        {
+                                            "prim":"bytes"
+                                        }
+                                    ],
+                                    "annots":[
+                                        "%token_info"
+                                    ]
                                 }
                             ]
                         },
@@ -49,7 +63,7 @@
                                 "prim":"GET",
                                 "args":[
                                     {
-                                        "int":"6"
+                                        "int":"7"
                                     }
                                 ]
                             },
@@ -67,9 +81,7 @@
                             {
                                 "prim":"IF",
                                 "args":[
-                                    [
-
-                                    ],
+                                    [],
                                     [
                                         {
                                             "prim":"PUSH",
@@ -95,7 +107,7 @@
                                 "prim":"GET",
                                 "args":[
                                     {
-                                        "int":"6"
+                                        "int":"7"
                                     }
                                 ]
                             },
@@ -116,7 +128,7 @@
                                                     "prim":"int"
                                                 },
                                                 {
-                                                    "int":"76"
+                                                    "int":"70"
                                                 }
                                             ]
                                         },
@@ -124,13 +136,8 @@
                                             "prim":"FAILWITH"
                                         }
                                     ],
-                                    [
-
-                                    ]
+                                    []
                                 ]
-                            },
-                            {
-                                "prim":"CDR"
                             }
                         ],
                         "annotations":[]
@@ -163,7 +170,7 @@
                             ]
                         },
                         "returnType":{
-                            "prim":"int"
+                            "prim":"nat"
                         },
                         "code":[
                             {
@@ -181,7 +188,7 @@
                                 "prim":"GET",
                                 "args":[
                                     {
-                                        "int":"6"
+                                        "int":"7"
                                     }
                                 ]
                             },
@@ -202,9 +209,7 @@
                             {
                                 "prim":"IF",
                                 "args":[
-                                    [
-
-                                    ],
+                                    [],
                                     [
                                         {
                                             "prim":"PUSH",
@@ -227,7 +232,7 @@
                                 "prim":"PUSH",
                                 "args":[
                                     {
-                                        "prim":"int"
+                                        "prim":"nat"
                                     },
                                     {
                                         "int":"0"
@@ -257,7 +262,7 @@
                                 "prim":"GET",
                                 "args":[
                                     {
-                                        "int":"6"
+                                        "int":"8"
                                     }
                                 ]
                             },
@@ -286,7 +291,7 @@
                                                     "prim":"int"
                                                 },
                                                 {
-                                                    "int":"86"
+                                                    "int":"80"
                                                 }
                                             ]
                                         },
@@ -294,13 +299,8 @@
                                             "prim":"FAILWITH"
                                         }
                                     ],
-                                    [
-
-                                    ]
+                                    []
                                 ]
-                            },
-                            {
-                                "prim":"CAR"
                             },
                             {
                                 "prim":"COMPARE"
@@ -319,7 +319,7 @@
                                             "prim":"PUSH",
                                             "args":[
                                                 {
-                                                    "prim":"int"
+                                                    "prim":"nat"
                                                 },
                                                 {
                                                     "int":"1"
@@ -327,9 +327,7 @@
                                             ]
                                         }
                                     ],
-                                    [
-
-                                    ]
+                                    []
                                 ]
                             }
                         ],
@@ -349,7 +347,7 @@
                             "prim":"nat"
                         },
                         "returnType":{
-                            "prim":"int"
+                            "prim":"nat"
                         },
                         "code":[
                             {
@@ -362,7 +360,7 @@
                                 "prim":"GET",
                                 "args":[
                                     {
-                                        "int":"6"
+                                        "int":"7"
                                     }
                                 ]
                             },
@@ -375,9 +373,7 @@
                             {
                                 "prim":"IF",
                                 "args":[
-                                    [
-
-                                    ],
+                                    [],
                                     [
                                         {
                                             "prim":"PUSH",
@@ -400,7 +396,7 @@
                                 "prim":"PUSH",
                                 "args":[
                                     {
-                                        "prim":"int"
+                                        "prim":"nat"
                                     },
                                     {
                                         "int":"1"
@@ -420,7 +416,6 @@
             "implementations":[
                 {
                     "michelsonStorageView":{
-                        "parameter":"None",
                         "returnType":{
                             "prim":"list",
                             "args":[
@@ -694,7 +689,7 @@
                                         "prim":"bool"
                                     },
                                     {
-                                        "prim":"False"
+                                        "prim":"false"
                                     }
                                 ]
                             }
